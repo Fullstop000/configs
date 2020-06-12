@@ -1,13 +1,51 @@
+call plug#begin('~/.vim/plugged')
+Plug 'jiangmiao/auto-pairs'
+Plug 'sheerun/vim-polyglot'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'airblade/vim-rooter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'christianchiarulli/onedark.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'powerman/vim-plugin-autosess'
+Plug 'tpope/vim-commentary'
+Plug 'arcticicestudio/nord-vim', { 'for': 'go' }
+call plug#end() 
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Load Themes
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
+"Credit joshdick
+"Use 24-bit (true-color) mode in Vim/Neovim when outside tmux.
+"If you're using tmux version 2.2 or later, you can remove the outermost $TMUX check and use tmux's 24-bit color support
+"(see < http://sunaku.github.io/tmux-24bit-color.html#usage > for more information.)
+if (empty($TMUX))
+  if (has("nvim"))
+  "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
+  let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+  endif
+  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
+  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
+  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
+  if (has("termguicolors"))
+    set termguicolors
+  endif
+endif
+
 packadd! onedark.vim
-packadd! solarized8
 packadd! gruvbox
 syntax enable
 set termguicolors
-colorscheme gruvbox
+colorscheme nord
+
+" vim-go settings
+let g:go_highlight_functions = 1
+let g:go_highlight_function_calls = 1
+let g:go_highlight_operators = 1
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
@@ -32,7 +70,7 @@ map <C-F> :Rg<cr>
 "
 nmap <C-n> :CocCommand explorer<CR>
 nmap <space>f :CocCommand explorer --preset floating<CR>
-autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
+" autocmd BufEnter * if (winnr("$") == 1 && &filetype == 'coc-explorer') | q | endif
 
 " -------------------------------------------------------------------------------------------------
 " FZF settings
@@ -56,9 +94,14 @@ let mapleader = ","
 " Fast saving
 nmap <leader>w :w!<cr>
 
-" :W sudo saves the file
+" :W sudo saves the file 
 " (useful for handling the permission-denied error)
 command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
+
+" coc-git keymap
+" navigate chunks of current buffer
+nmap <leader>gn <Plug>(coc-git-prevchunk)
+nmap <leader>gb <Plug>(coc-git-nextchunk)
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -68,14 +111,13 @@ command! W execute 'w !sudo tee % > /dev/null' <bar> edit!
 set so=7
 
 " Avoid garbled characters in Chinese language windows OS
-let $LANG='en'
+let $LANG='en' 
 set langmenu=en
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
 
 " Turn on the Wild menu
 set wildmenu
-" set wildmode=longest,list,full
 
 " Ignore compiled files
 set wildignore=*.o,*~,*.pyc
@@ -101,23 +143,23 @@ set whichwrap+=<,>,h,l
 " Ignore case when searching
 set ignorecase
 
-" When searching try to be smart about cases
+" When searching try to be smart about cases 
 set smartcase
 
 " Highlight search results
 set hlsearch
 
 " Makes search act like search in modern browsers
-set incsearch
+set incsearch 
 
 " Don't redraw while executing macros (good performance config)
-set lazyredraw
+set lazyredraw 
 
 " For regular expressions turn magic on
 set magic
 
 " Show matching brackets when text indicator is over them
-set showmatch
+set showmatch 
 " How many tenths of a second to blink when matching brackets
 set mat=2
 
@@ -223,7 +265,7 @@ map <M-n> :tabnew<cr>
 map <F4> :tabclose<cr>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
-map <leader>tm :tabmove
+map <leader>tm :tabmove 
 map <leader>t<leader> :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
@@ -239,7 +281,7 @@ map <leader>te :tabedit <C-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Specify the behavior when switching between buffers
+" Specify the behavior when switching between buffers 
 try
   set switchbuf=useopen,usetab,newtab
   set stal=2
@@ -247,7 +289,7 @@ catch
 endtry
 
 " Return to last edit position when opening files (You want this!)
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -339,7 +381,7 @@ endfunction
 
 function! CmdLine(str)
     call feedkeys(":" . a:str)
-endfunction
+endfunction 
 
 function! VisualSelection(direction, extra_filter) range
     let l:saved_reg = @"
@@ -358,23 +400,6 @@ function! VisualSelection(direction, extra_filter) range
     let @" = l:saved_reg
 endfunction
 
-call plug#begin('~/.vim/plugged')
-Plug 'jiangmiao/auto-pairs'
-Plug 'sheerun/vim-polyglot'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'airblade/vim-rooter'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'christianchiarulli/onedark.vim'
-Plug 'morhetz/gruvbox'
-Plug 'tpope/vim-fugitive'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'powerman/vim-plugin-autosess'
-Plug 'tpope/vim-commentary'
-
-call plug#end()
 
 " Auto highlight colors
 autocmd CursorHold * silent call CocActionAsync('highlight')
@@ -382,7 +407,7 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => CoC Settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
+" 
 " TextEdit might fail if hidden is not set.
 
 set hidden
