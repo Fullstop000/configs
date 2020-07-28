@@ -2,21 +2,22 @@
 
 All config files for setting up handly coding workspace from scratch
 
-## Install
-
-### Requirements
+## Requirements
 - Vim >= 8.0
 - Neovim >= 0.4.3
 - Nodejs >= 10.12
+
+## Install
 
 > tmux not included
 
 1. Install `vim` or `neovim`
 2. Install `nodejs` (>=10.12) 
 3. Install [vim-plug](https://github.com/junegunn/vim-plug)
-4. Replace `init.vim` in `$HOME/.config/nvim` and `.vimrc` 
-5. Run `:PlugInstall` in vim/neovim
-6. Install coc extensions
+4. Copy `init.vim` to `$HOME/.config/nvim/init.vim`
+5. Copy `.vimrc` to `$HOME/.vimrc` 
+6. Run `:PlugInstall` in vim/neovim
+7. Install coc extensions by following commands
 ```
 :CocInstall coc-hightlight
 :CocInstall coc-json
@@ -24,9 +25,14 @@ All config files for setting up handly coding workspace from scratch
 :CocInstall coc-git
 :CocInstall coc-rust-analyzer //optional
 ```
-7. Replace `coc-settings.json` in `$HOME/.config/nvim`
-7. Run `:CocRestart`
-9. Restart vim/neovim
+8. Replace `coc-settings.json` in `$HOME/.config/nvim`
+9. Run `:CocRestart`
+10. Restart vim/neovim
+
+### Install `fzf`, `bat` and `ripgrep`
+- [fzf](https://github.com/junegunn/fzf)
+- [bat](https://github.com/sharkdp/bat)
+- [ripgrep](https://github.com/BurntSushi/ripgrep)
 
 ## Features
 - `Go`, `Rust` support
