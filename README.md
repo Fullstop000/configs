@@ -49,3 +49,22 @@ Replace this in `$HOME/.config/nvim`
 - [coc-git](https://github.com/neoclide/coc-git)
 - [coc-explorer](https://github.com/weirongxu/coc-explorer)
 - [coc-rust-analyzer](https://github.com/fannheyward/coc-rust-analyzer)
+
+## Install
+
+> tmux not included
+
+1. Install `vim` or `neovim`
+2. Install `nodejs` (>=10.12) 
+3. Install [vim-plug](https://github.com/junegunn/vim-plug)
+4. Run `:PlugInstall` in vim/neovim
+5. Install coc extensions
+```
+:CocInstall coc-hightlight
+:CocInstall coc-json
+:CocInstall coc-explorer
+:CocInstall coc-git
+:CocInstall coc-rust-analyzer
+```
+6. Run `:CocRestart`
+7. Restart vim/neovim
