@@ -14,7 +14,7 @@ All config files for setting up handly coding workspace from scratch
 1. Install `vim` or `neovim`
 2. Install `nodejs` (>=10.12) 
 3. Install [vim-plug](https://github.com/junegunn/vim-plug)
-4. Run replace `init.vim` in `$HOME/.config/nvim` and `.vimrc`
+4. Replace `init.vim` in `$HOME/.config/nvim` and `.vimrc` 
 5. Run `:PlugInstall` in vim/neovim
 6. Install coc extensions
 ```
