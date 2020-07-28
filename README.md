@@ -2,6 +2,32 @@
 
 All config files for setting up handly coding workspace from scratch
 
+## Install
+
+### Requirements
+- Vim >= 8.0
+- Neovim >= 0.4.3
+- Nodejs >= 10.12
+
+> tmux not included
+
+1. Install `vim` or `neovim`
+2. Install `nodejs` (>=10.12) 
+3. Install [vim-plug](https://github.com/junegunn/vim-plug)
+4. Run replace `init.vim` in `$HOME/.config/nvim` and `.vimrc`
+5. Run `:PlugInstall` in vim/neovim
+6. Install coc extensions
+```
+:CocInstall coc-hightlight
+:CocInstall coc-json
+:CocInstall coc-explorer
+:CocInstall coc-git
+:CocInstall coc-rust-analyzer //optional
+```
+7. Replace `coc-settings.json` in `$HOME/.config/nvim`
+7. Run `:CocRestart`
+9. Restart vim/neovim
+
 ## Features
 - `Go`, `Rust` support
 - Awesome tunned theme based on Nord
@@ -50,23 +76,3 @@ Replace this in `$HOME/.config/nvim`
 - [coc-explorer](https://github.com/weirongxu/coc-explorer)
 - [coc-rust-analyzer](https://github.com/fannheyward/coc-rust-analyzer)
 
-## Install
-
-> tmux not included
-
-1. Install `vim` or `neovim`
-2. Install `nodejs` (>=10.12) 
-3. Install [vim-plug](https://github.com/junegunn/vim-plug)
-4. Run replace `init.vim` in `$HOME/.config/nvim` and `.vimrc`
-5. Run `:PlugInstall` in vim/neovim
-6. Install coc extensions
-```
-:CocInstall coc-hightlight
-:CocInstall coc-json
-:CocInstall coc-explorer
-:CocInstall coc-git
-:CocInstall coc-rust-analyzer //optional
-```
-7. Replace `coc-settings.json` in `$HOME/.config/nvim`
-7. Run `:CocRestart`
-9. Restart vim/neovim
