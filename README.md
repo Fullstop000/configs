@@ -19,7 +19,7 @@ All config files for setting up handly coding workspace from scratch
 6. Run `:PlugInstall` in vim/neovim
 7. Install coc extensions by following commands
 ```
-:CocInstall coc-hightlight
+:CocInstall coc-highlight
 :CocInstall coc-json
 :CocInstall coc-explorer
 :CocInstall coc-git
