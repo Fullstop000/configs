@@ -67,6 +67,6 @@ Replace this in `$HOME/.config/nvim`
 :CocInstall coc-git
 :CocInstall coc-rust-analyzer //optional
 ```
-7. Replace `coc-settings.json in `$HOME/.config/nvim`
+7. Replace `coc-settings.json` in `$HOME/.config/nvim`
 7. Run `:CocRestart`
 9. Restart vim/neovim
