@@ -57,14 +57,16 @@ Replace this in `$HOME/.config/nvim`
 1. Install `vim` or `neovim`
 2. Install `nodejs` (>=10.12) 
 3. Install [vim-plug](https://github.com/junegunn/vim-plug)
-4. Run `:PlugInstall` in vim/neovim
-5. Install coc extensions
+4. Run replace `init.vim` in `$HOME/.config/nvim` and `.vimrc`
+5. Run `:PlugInstall` in vim/neovim
+6. Install coc extensions
 ```
 :CocInstall coc-hightlight
 :CocInstall coc-json
 :CocInstall coc-explorer
 :CocInstall coc-git
-:CocInstall coc-rust-analyzer
+:CocInstall coc-rust-analyzer //optional
 ```
-6. Run `:CocRestart`
-7. Restart vim/neovim
+7. Replace `coc-settings.json in `$HOME/.config/nvim`
+7. Run `:CocRestart`
+9. Restart vim/neovim
